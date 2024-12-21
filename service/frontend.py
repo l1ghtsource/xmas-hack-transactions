@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from parsers import get_course
+from get_course import get_course
 
 
 @st.cache_data
@@ -72,7 +72,7 @@ if uploaded_payments and uploaded_providers and ex_rates_file:
     if selected_strategy:
         st.write(f'Вы выбрали стратегию: {selected_strategy}')
 
-        # тут сделать вызов алгоритма из algos
+        # тут сделать вызов алгоритма из algos/find_optimal_chains
         if strategies[selected_strategy] == 'balanced':
             result = payments
         elif strategies[selected_strategy] == 'maximize_success':
