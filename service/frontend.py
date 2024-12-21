@@ -16,29 +16,30 @@ st.title('📈 ФлоуЧейн')
 st.header('Загрузка файлов')
 
 uploaded_payments = st.file_uploader(
-    'Загрузите Payments (2 файла):',
-    accept_multiple_files=True,
+    'Загрузите Payments:',
+    accept_multiple_files=False,
     type='csv',
     key='payments',
-    help='Файлы должны быть в формате .csv и соответствовать форматам референсных файлов payments_1.csv и payments_2.csv'
+    help='Файл должен быть в формате .csv и соответствовать формату референсных файлов payments_1.csv и payments_2.csv'
 )
 
 uploaded_providers = st.file_uploader(
-    'Загрузите Providers (2 файла):',
-    accept_multiple_files=True,
+    'Загрузите Providers:',
+    accept_multiple_files=False,
     type='csv',
     key='providers',
-    help='Файлы должны быть в формате .csv и соответствовать форматам референсных файлов providers_1.csv и providers_2.csv'
+    help='Файл должен быть в формате .csv и соответствовать формату референсных файлов providers_1.csv и providers_2.csv'
 )
 
 ex_rates_file = st.file_uploader(
-    'Загрузите  Ex_Rates:',
+    'Загрузите Ex_Rates:',
+    accept_multiple_files=False,
     type='csv',
     key='ex_rates',
     help='Файл должен быть в формате .csv и соответствовать формату референсного файла ex_rates.csv'
 )
 
-if len(uploaded_payments) == 2 and len(uploaded_providers) == 2 and ex_rates_file is not None:
+if uploaded_payments and uploaded_providers and ex_rates_file:
     st.success('Все файлы успешно загружены!')
 
     use_uploaded_ex_rates = st.checkbox(
