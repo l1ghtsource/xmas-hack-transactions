@@ -7,7 +7,12 @@ def load_csv(file):
     return pd.read_csv(file)
 
 
-st.title('FlowChain')
+st.set_page_config(
+    page_title='ФлоуЧейн',
+    page_icon='📈'
+)
+
+st.title('📈 ФлоуЧейн')
 st.header('Загрузка файлов')
 
 uploaded_payments = st.file_uploader(
