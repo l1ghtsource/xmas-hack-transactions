@@ -55,13 +55,8 @@ if uploaded_payments and uploaded_providers and ex_rates_file:
     else:
         ex_rates = load_csv(ex_rates_file)
 
-    payments_1 = load_csv(uploaded_payments[0])
-    payments_2 = load_csv(uploaded_payments[1])
-    providers_1 = load_csv(uploaded_providers[0])
-    providers_2 = load_csv(uploaded_providers[1])
-
-    payments = pd.concat([payments_1, payments_2], ignore_index=True)
-    providers = pd.concat([providers_1, providers_2], ignore_index=True)
+    payments = load_csv(uploaded_payments)
+    providers = load_csv(uploaded_providers)
 
     st.header('Выбор стратегии')
 
