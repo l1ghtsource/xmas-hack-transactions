@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from parsers import get_course
 
 
 @st.cache_data
@@ -49,8 +50,7 @@ if uploaded_payments and uploaded_providers and ex_rates_file:
     )
 
     if not use_uploaded_ex_rates:
-        local_ex_rates_path = 'local_ex_rates.csv'  # тут сделать вызов парсера
-        ex_rates = load_csv(local_ex_rates_path)
+        local_ex_rates_path = get_course()
         st.info('Используется актуальный курс валют с биржи, для использования вашего файла активируйте соответствующий чекбокс.')
     else:
         ex_rates = load_csv(ex_rates_file)
