@@ -1,4 +1,4 @@
-import matplotlib.pyplot as plt
+from plotly.io import show
 import optuna
 import numpy as np
 import pandas as pd
@@ -193,8 +193,9 @@ def optimization(providers, payments, ex_rates):
     fig = optuna.visualization.plot_optimization_history(study)
     fig.update_layout(title='История оптимизации', xaxis_title='Номер итерации', yaxis_title='Целевая метрика')
 
-    plt.savefig('optimization_history.png')
-    print("График оптимизации сохранен в файл 'optimization_history.png'")
+    show(fig)
+    fig.write_html('optimization_history.html')
+    print("График оптимизации сохранен в файл 'optimization_history.html'")
 
 
 def w_o_optimization(providers, payments, ex_rates, optimal_k):
