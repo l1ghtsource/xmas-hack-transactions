@@ -75,12 +75,15 @@ else:
         help='Файл должен быть в формате .csv и соответствовать формату референсного файла ex_rates.csv'
     )
     if uploaded_payments and uploaded_providers and ex_rates_file:
-        payments = load_csv(uploaded_payments)
-        providers = load_csv(uploaded_providers)
-        ex_rates = load_csv(ex_rates_file)
+        payments = load_csv(uploaded_payments).to_csv('payments_temp.csv', index=False)
+        providers = load_csv(uploaded_providers).to_csv('providers_temp.csv', index=False)
+        ex_rates = load_csv(ex_rates_file).to_csv('ex_rates_temp.csv', index=False)
+        uploaded_payments = 'payments_temp.csv'
+        uploaded_providers = 'providers_temp.csv'
+        ex_rates_file = 'ex_rates_temp.csv'
         st.success('Файлы payments и providers успешно загружены!')
 
-if payments is not None and providers is not None:
+if uploaded_payments is not None and uploaded_providers is not None:
     st.header('Курсы валют')
     use_uploaded_ex_rates = st.checkbox(
         'Использовать актуальный курс валют с биржи',
