@@ -93,12 +93,12 @@ if payments is not None and providers is not None:
         st.info('Используется актуальный курс валют с биржи.')
 
     if data_source == 'Использовать первый датасет':
-        trial_number = 59
-        optimal_value = 1073517.6445938607
-        optimal_k = [-0.9962513294274908, 0.48830840996012714, 0.8385587739627488, -0.7024426931951558]
+        trial_number = 54
+        optimal_value = 1074162.7686020422
+        optimal_k = [-0.5755060280729672, 0.19288650105021032, 0.8738533920662923, -0.8690379202212117]
         metrics = {
-            'Time Spent': '1,397,936.0',
-            'Money Passed in USD': '1,073,021.26',
+            'Time Spent': '1,393,060.0', 
+            'Money Passed in USD': '1,073,497.73', 
             'Success Rate': '26%',
             'Fee in USD': '6,758.80'
         }
@@ -172,6 +172,17 @@ if payments is not None and providers is not None:
  
     else:
         optimization(uploaded_providers, uploaded_payments, ex_rates_file)
-        results = 3
+        
+        st.subheader('Результат работы алгоритма (оптимальные цепочки)')
+        
+        file_path = 'result_merged.csv'
+        with open(file_path, 'rb') as f:
+            st.download_button(
+                label='Скачать результат в CSV',
+                data=f,
+                file_name='result_merged.csv',
+                mime='text/csv',
+        )
+        
 else:
     st.warning('Выберите источник данных для продолжения.')
