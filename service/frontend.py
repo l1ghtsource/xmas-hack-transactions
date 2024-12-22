@@ -6,7 +6,7 @@ import sys
 import os
 sys.path.append(os.getcwd())
 
-from algos.final_optimizer import optimization
+from algos.final_optimizer import optimization, w_o_optimization
 
 
 @st.cache_data
@@ -16,10 +16,13 @@ def load_csv(file):
 
 @st.cache_data
 def load_local_dataset(dataset_num):
-    payments = pd.read_csv(f'data\payments_{dataset_num}.csv')
-    providers = pd.read_csv(f'data\providers_{dataset_num}.csv')
-    ex_rates = pd.read_csv('data\ex_rates.csv')
-    return payments, providers, ex_rates
+    uploaded_payments = f'data\payments_{dataset_num}.csv'
+    uploaded_providers = f'data\providers_{dataset_num}.csv'
+    ex_rates_file = 'data\ex_rates.csv'
+    payments = pd.read_csv(uploaded_payments)
+    providers = pd.read_csv(uploaded_providers)
+    ex_rates = pd.read_csv(ex_rates_file)
+    return payments, providers, ex_rates, uploaded_payments, uploaded_providers, ex_rates_file
 
 
 st.set_page_config(
@@ -42,7 +45,7 @@ providers = None
 if data_source in ['Использовать первый датасет', 'Использовать второй датасет']:
     dataset_num = '1' if data_source == 'Использовать первый датасет' else '2'
     try:
-        payments, providers, ex_rates = load_local_dataset(dataset_num)
+        payments, providers, ex_rates, uploaded_payments, uploaded_providers, ex_rates_file = load_local_dataset(dataset_num)
         st.success(f'Датасет {dataset_num} успешно загружен!')
     except FileNotFoundError:
         st.error(f'Файлы датасета {dataset_num} не найдены в локальной директории.')
@@ -90,13 +93,49 @@ if payments is not None and providers is not None:
         st.info('Используется актуальный курс валют с биржи.')
 
     if data_source == 'Использовать первый датасет':
+        trial_number = 59
+        optimal_value = 1073517.6445938607
+        optimal_k = [-0.9962513294274908, 0.48830840996012714, 0.8385587739627488, -0.7024426931951558]
+        metrics = {
+            'Time Spent': '1,397,936.0',
+            'Money Passed in USD': '1,073,021.26',
+            'Success Rate': '26%',
+            'Fee in USD': '6,758.80'
+        }
+        
+        w_o_optimization(uploaded_providers, uploaded_payments, ex_rates_file, optimal_k)
+        
+        st.subheader('Результат работы алгоритма (оптимальные цепочки)')
+        
+        file_path = 'result.csv'
+        with open(file_path, 'rb') as f:
+            st.download_button(
+                label='Скачать результат в CSV',
+                data=f,
+                file_name='result.csv',
+                mime='text/csv',
+            )
+        
+        st.subheader('Информация о лучшем испытании')
+        st.markdown(
+            f'''
+            - **Номер испытания:** {trial_number}
+            - **Оптимальное значение:** {optimal_value:.2f}
+            '''
+        )
+
+        st.subheader('Оптимальные значения коэффициентов (k)')
+        st.write(optimal_k)
+
+        st.subheader('Метрики')
+        for metric, value in metrics.items():
+            st.write(f"**{metric}:** {value}")
+    
         results = 1
     elif data_source == 'Использовать второй датасет':
         results = 2
     else:
         optimization(uploaded_providers, uploaded_payments, ex_rates_file)
         results = 3
-        
-    print(results)
 else:
     st.warning('Выберите источник данных для продолжения.')

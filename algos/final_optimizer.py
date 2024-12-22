@@ -195,3 +195,10 @@ def optimization(providers, payments, ex_rates):
 
     plt.savefig('optimization_history.png')
     print("График оптимизации сохранен в файл 'optimization_history.png'")
+
+
+def w_o_optimization(providers, payments, ex_rates, optimal_k):
+    m, f = proceed_dataset(providers, ex_rates, payments, np.array(optimal_k))
+    print(m)
+    if f is not None:
+        f.to_csv('result.csv', index=False)
