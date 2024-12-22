@@ -7,9 +7,9 @@ from tqdm import tqdm
 
 def load_data():
     print("Загрузка данных...")
-    providers = pd.read_csv('/kaggle/input/xmas-hack-ggwp/providers_1.csv')
-    payments = pd.read_csv('/kaggle/input/xmas-hack-ggwp/payments_1.csv')
-    rates = pd.read_csv('/kaggle/input/xmas-hack-ggwp/ex_rates.csv')
+    providers = pd.read_csv('data/providers_1.csv')
+    payments = pd.read_csv('data/payments_1.csv')
+    rates = pd.read_csv('data/ex_rates.csv')
     print("Данные загружены.")
     return providers, payments, rates
 
