@@ -103,16 +103,16 @@ if payments is not None and providers is not None:
             'Fee in USD': '6,758.80'
         }
         
-        w_o_optimization(uploaded_providers, uploaded_payments, ex_rates_file, optimal_k)
+       # w_o_optimization(uploaded_providers, uploaded_payments, ex_rates_file, optimal_k)
         
         st.subheader('Результат работы алгоритма (оптимальные цепочки)')
         
-        file_path = 'result.csv'
+        file_path = r'.\results\result_1.csv'
         with open(file_path, 'rb') as f:
             st.download_button(
                 label='Скачать результат в CSV',
                 data=f,
-                file_name='result.csv',
+                file_name='result_1.csv',
                 mime='text/csv',
             )
         
@@ -130,10 +130,46 @@ if payments is not None and providers is not None:
         st.subheader('Метрики')
         for metric, value in metrics.items():
             st.write(f"**{metric}:** {value}")
-    
-        results = 1
+            
     elif data_source == 'Использовать второй датасет':
-        results = 2
+        trial_number = 26
+        optimal_value = 1136394.6537694214
+        optimal_k = [0.017245344096524978, 0.32770832537823447, 0.2802537193422929, -0.2777648210606486]
+        metrics = {
+            'Time Spent': '1,808,654.0', 
+            'Money Passed in USD': '1,126,143.63', 
+            'Success Rate': '28%',
+            'Fee in USD': '2,765.34' 
+        }
+        
+        # w_o_optimization(uploaded_providers, uploaded_payments, ex_rates_file, optimal_k)
+        
+        st.subheader('Результат работы алгоритма (оптимальные цепочки)')
+        
+        file_path = r'.\results\result_2.csv'
+        with open(file_path, 'rb') as f:
+            st.download_button(
+                label='Скачать результат в CSV',
+                data=f,
+                file_name='result_2.csv',
+                mime='text/csv',
+            )
+        
+        st.subheader('Информация о лучшем испытании')
+        st.markdown(
+            f'''
+            - **Номер испытания:** {trial_number}
+            - **Оптимальное значение:** {optimal_value:.2f}
+            '''
+        )
+
+        st.subheader('Оптимальные значения коэффициентов (k)')
+        st.write(optimal_k)
+
+        st.subheader('Метрики')
+        for metric, value in metrics.items():
+            st.write(f"**{metric}:** {value}") 
+ 
     else:
         optimization(uploaded_providers, uploaded_payments, ex_rates_file)
         results = 3
