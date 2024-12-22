@@ -10,7 +10,7 @@ Team Members:
 
 Презентация: [тык](https://drive.google.com/)
 
-Демонстрация веб-сервиса: [тык](https://drive.google.com/)
+Демонстрация веб-сервиса: [тык](https://drive.google.com/file/d/1O7KJzqd611DcsLDJZUJpsJFhOY2CnNdQ/view?usp=sharing)
 
 ## Кейс "Высокоэффективный платежный конвейер"
 
