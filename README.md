@@ -27,7 +27,7 @@ Team Members:
 
 ## Блок-схема решения:
 
-...
+![scheme](images/scheme.jpg)
 
 ## Идея решения:
 
