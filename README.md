@@ -58,19 +58,19 @@ Team Members:
 
 3. Запуск с указанием путей к файлам:
    ```bash
-   python script_name.py --providers 'path\to\your\providers.csv' --payments 'path\to\your\payments.csv' --ex_rates 'path\to\your\ex_rates.csv'
+   python main.py --providers 'path\to\your\providers.csv' --payments 'path\to\your\payments.csv' --ex_rates 'path\to\your\ex_rates.csv'
    ```
    В этом случае будут использованы указанные вами пути к файлам данных и байесовская оптимизация также будет запущена с нуля.
 
 5. Запуск с выбором первого набора данных:
    ```bash
-   python script_name.py --dataset_1
+   python main.py --dataset_1
    ```
    Здесь будут использоваться предрасчитанные веса для первого набора данных, чтобы не тратить время на повторную оптимизацию.
 
 7. Запуск с выбором второго набора данных:
    ```bash
-   python script_name.py --dataset_2
+   python main.py --dataset_2
    ```
    Здесь будут использоваться предрасчитанные веса для второго набора данных, чтобы не тратить время на повторную оптимизацию.
 
