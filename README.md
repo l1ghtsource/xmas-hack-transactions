@@ -5,8 +5,8 @@
 Team Members:
 
 1. **Вишневский Марк** - Data Engineer
-2. **Москвин Владимир** - Analyst
-3. **Рыжичкин Кирилл** - Frontend
+2. **Москвин Владимир** - Analyst, Design
+3. **Рыжичкин Кирилл** - Frontend, ML
 
 Презентация: [тык](https://drive.google.com/)
 
