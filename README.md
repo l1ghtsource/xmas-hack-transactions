@@ -8,7 +8,7 @@ Team Members:
 2. **Москвин Владимир** - Analyst, Design
 3. **Рыжичкин Кирилл** - Frontend, ML
 
-Презентация: [тык](https://drive.google.com/file/d/1YOHltB6nh-ZIAkd-51Shy1KuCuybsGTR/view?usp=sharing)
+Презентация: [тык](https://disk.yandex.ru/d/h2MOc66DNym4Ug)
 
 Демонстрация веб-сервиса: [тык](https://drive.google.com/file/d/1O7KJzqd611DcsLDJZUJpsJFhOY2CnNdQ/view?usp=sharing)
 
